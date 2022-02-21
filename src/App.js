@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import Input from './components/Input';
+import Todos from './components/Todos';
+import "./style.css"
 
 function App() {
+
+  const [todo, setTodo] = useState({
+    todoTxt: '',
+    todoDate: {
+      todoDate: '',
+      todoMonth: '',
+      todoYear: '',
+      todoHour: '',
+      todoMinut: ''
+    },
+    id: ''
+  })
+
+  const [todos, setTodos] = useState([])
+  useEffect(() => {
+    setTodos((prev) => { return [...prev, todo] })
+  }, [todo]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Input todo={todo} setTodo={setTodo} />
+      <Todos todos={todos} setTodos={setTodos} todo={todo} setTodo={setTodo} />
     </div>
   );
 }
