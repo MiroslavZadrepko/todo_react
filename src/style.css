@@ -15,6 +15,7 @@ button {
     border: none;
     background-color: transparent;
     margin: 1.5vh 1vw;
+    cursor: pointer;
 }
 
 input {
@@ -25,8 +26,8 @@ input {
 }
 
 .inputChck {
-    width: 10vw;
-    transform: translate(0, 25%);
+    width: 2vw;
+    transform: translate(0, 30%);
 }
 
 .btnGreen {
@@ -61,6 +62,13 @@ input {
 .react-datepicker__input-container {
     margin-top: 2.35%;
 }
-.todo_div p {
-    padding-left: 2vw;
+
+button .message {
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    margin-top: -2vh;
+    font-weight: bold;
 }
+
+button:hover .message { visibility: visible;}

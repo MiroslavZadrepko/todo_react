@@ -94,11 +94,11 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                     <div><p>{todo.todoTxt}{todo.todoDate.todoDate ? <span>,   {todo.todoDate.todoDate}.{todo.todoDate.todoMonth + 1}.{todo.todoDate.todoYear} {todo.todoDate.todoHour}:{todo.todoDate.todoMinut}</span> : null} </p></div>
 
                     <div className="todoButtons">
-                        <button onClick={() => handleEdit(todo.id)}> <FiEdit3 style={{ viewBox: "0, 0, 60, 55", width: "30", height: "30" }} /></button>
+                        <button onClick={() => handleEdit(todo.id)}> <FiEdit3 style={{ viewBox: "0, 0, 60, 55", width: "30", height: "30" }} /> <span className='message'>Edit</span> </button>
 
-                        <button className={isActive ? 'btnGreen' : ''} onClick={() => handleCheck(todo.id)} > <IoCheckmarkDoneSharp style={{ viewBox: "0, 0, 60, 55", width: "35", height: "35" }} /> </button>
+                        <button className={isActive ? 'btnGreen' : ''} onClick={() => handleCheck(todo.id)} > <IoCheckmarkDoneSharp style={{ viewBox: "0, 0, 60, 55", width: "30", height: "30" }} /> <span className='message'>Done</span> </button>
 
-                        <button onClick={() => handleDelete(todo.id)} > <RiDeleteBin2Fill style={{ viewBox: "0, 0, 60, 55", width: "30", height: "30" }} /> </button>
+                        <button onClick={() => handleDelete(todo.id)} > <RiDeleteBin2Fill style={{ viewBox: "0, 0, 60, 55", width: "30", height: "30" }} /> <span className='message'>Delete</span> </button>
                     </div>
 
 

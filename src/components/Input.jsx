@@ -69,7 +69,7 @@ const Input = ({ todo, setTodo }) => {
                             timeFormat="HH:mm"
                             timeIntervals={5}
                         />}
-                    <button type='submit'> <MdAddTask style={{ viewBox: "0, 0, 60, 55", width: "3em", height: "3em" }} /> </button>
+                    <button type='submit'> <MdAddTask style={{ viewBox: "0, 0, 60, 55", width: "30", height: "30" }} /> <span className='message'>Add ToDo</span></button>
                 </fieldset>
             </form>
         </>
