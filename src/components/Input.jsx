@@ -57,7 +57,7 @@ const Input = ({ todo, setTodo }) => {
                     <legend>Add new ToDo</legend>
                     <input type="text" name='todoTxt' value={todoTxt} onChange={(e) => setTodoTxt(e.target.value)} required />
                     <p>Add date and time?<input className='inputChck' type="checkbox" onClick={() => setEnterDate(!enterDate)} /></p>
-                    {enterDate ?
+                    {enterDate &&
                         <DatePicker
                             name='todoDate'
                             selected={date}
@@ -68,8 +68,8 @@ const Input = ({ todo, setTodo }) => {
                             dateFormat="dd/MM/yyyy HH:mm"
                             timeFormat="HH:mm"
                             timeIntervals={5}
-                        /> : ''}
-                    <button type='submit'> <MdAddTask style={{ viewBox: "0, 0, 60, 55", width: "50", height: "50" }} /> </button>
+                        />}
+                    <button type='submit'> <MdAddTask style={{ viewBox: "0, 0, 60, 55", width: "3em", height: "3em" }} /> </button>
                 </fieldset>
             </form>
         </>
