@@ -67,7 +67,8 @@ button .message {
     visibility: hidden;
     position: absolute;
     z-index: 1;
-    margin-top: -2vh;
+    
+    margin-top: -.1em;
     font-weight: bold;
 }
 
