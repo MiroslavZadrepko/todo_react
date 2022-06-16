@@ -24,7 +24,7 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
         setIsActive(!isActive)
     }
 
-    //ugly part, realy ugly. More or less it's the same as Input.jsx, but I added some code to delete edited parts of ToDO. A mess.
+    //editiing todo. 
     const [editTodo, setEditTodo] = useState(false)
     const [tmpID, setTmpID] = useState('');
 
@@ -75,8 +75,7 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                 <div className={isActive ? 'divGreen' : '' + 'todo_div'}>
 
                     {editTodo &&
-                        <div><input onChange={(e) => { e.preventDefault(); setTodoTxt(e.target.value) }} />
-                      
+                        <div><input onChange={(e) => setTodoTxt(e.target.value)} onKeyDown={(e) => (e.key === 'Enter') ? handleEdit(todo.id) : null} />
 
                             {todo.todoDate.todoDate ?
                                 <DatePicker
@@ -91,9 +90,9 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                                     timeFormat="HH:mm"
                                     timeIntervals={5}
                                 /> : ''}
-                               
-                                </div>
-                               
+
+                        </div>
+
                     }
                     <div><p>{todoTxt ? todoTxt : todo.todoTxt}{todo.todoDate.todoDate ? <span>,   {todo.todoDate.todoDate}.{todo.todoDate.todoMonth + 1}.{todo.todoDate.todoYear} {todo.todoDate.todoHour}:{todo.todoDate.todoMinut}</span> : null} </p></div>
 
