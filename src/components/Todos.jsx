@@ -5,7 +5,7 @@ const Todos = ({ todo, setTodo, todos, setTodos }) => {
     return (
         <>
             <fieldset>
-                <legend>ToDo</legend>
+                <legend>ToDo's</legend>
                 {[...todos].reverse().map(todo => <Todo key={todo.id} todo={todo} setTodo={setTodo} todos={todos} setTodos={setTodos} />)}
 
             </fieldset>
