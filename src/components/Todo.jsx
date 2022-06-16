@@ -76,6 +76,7 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
 
                     {editTodo &&
                         <div><input onChange={(e) => { e.preventDefault(); setTodoTxt(e.target.value) }} />
+                      
 
                             {todo.todoDate.todoDate ?
                                 <DatePicker
@@ -89,9 +90,12 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                                     dateFormat="dd/MM/yyyy HH:mm"
                                     timeFormat="HH:mm"
                                     timeIntervals={5}
-                                /> : ''}</div>
+                                /> : ''}
+                               
+                                </div>
+                               
                     }
-                    <div><p>{todo.todoTxt}{todo.todoDate.todoDate ? <span>,   {todo.todoDate.todoDate}.{todo.todoDate.todoMonth + 1}.{todo.todoDate.todoYear} {todo.todoDate.todoHour}:{todo.todoDate.todoMinut}</span> : null} </p></div>
+                    <div><p>{todoTxt ? todoTxt : todo.todoTxt}{todo.todoDate.todoDate ? <span>,   {todo.todoDate.todoDate}.{todo.todoDate.todoMonth + 1}.{todo.todoDate.todoYear} {todo.todoDate.todoHour}:{todo.todoDate.todoMinut}</span> : null} </p></div>
 
                     <div className="todoButtons">
                         <button onClick={() => handleEdit(todo.id)}> <FiEdit3 style={{ viewBox: "0, 0, 60, 55", width: "2em", height: "2em" }} /> <span className='message'>Edit</span> </button>
