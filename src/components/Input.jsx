@@ -14,6 +14,7 @@ const Input = ({ todo, setTodo }) => {
     const [date, setDate] = useState(new Date())
     const [todoTxt, setTodoTxt] = useState('')
     const [enterDate, setEnterDate] = useState(false)
+    const [category, setCategory] = useState('')
 
     const handleSubmit = (e) => {
 
@@ -55,7 +56,15 @@ const Input = ({ todo, setTodo }) => {
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>Add new ToDo</legend>
-                    <input type="text" name='todoTxt' value={todoTxt} onChange={(e) => setTodoTxt(e.target.value)} required />
+                    <input type="text" name='todoTxt' value={todoTxt} onChange={(e) => setTodoTxt(e.target.value)} required /> <br></br>
+                    {/* solve adding a category*/}
+                    <select>
+                        <option value="">Select category</option>
+                        <option value="1">Računi</option>
+                        <option value="2">Posao</option>
+                        <option value="3">Porodica</option>
+                        <option value="4">Ostalo</option>
+                    </select>
                     <p>Add date and time?<input className='inputChck' type="checkbox" onClick={() => setEnterDate(!enterDate)} /></p>
                     {enterDate &&
                         <DatePicker

@@ -72,7 +72,7 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
     return (
         <>
             {todo.id != '' ?
-                <div className={isActive ? 'divGreen' : '' + 'todo_div'}>
+                <div className={'todo_div'}>
 
                     {editTodo &&
                         <div><input onChange={(e) => setTodoTxt(e.target.value)} onKeyDown={(e) => (e.key === 'Enter') ? handleEdit(todo.id) : null} />
