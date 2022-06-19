@@ -14,6 +14,7 @@ function App() {
       todoHour: '',
       todoMinut: ''
     },
+    category: '',
     id: ''
   })
 

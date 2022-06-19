@@ -38,17 +38,20 @@ const Input = ({ todo, setTodo }) => {
                     todoHour: date.getHours(),
                     todoMinut: minutes
                 },
+                category: category,
                 id: uuidv4()
             })
         } else {
             setTodo({
                 todoTxt: todoTxt,
                 todoDate: '',
+                category: category,
                 id: uuidv4()
             })
         }
         setTodoTxt('')
         setDate(new Date())
+        setCategory('')
     }
 
     return (
@@ -58,7 +61,7 @@ const Input = ({ todo, setTodo }) => {
                     <legend>Add new ToDo</legend>
                     <input type="text" name='todoTxt' value={todoTxt} onChange={(e) => setTodoTxt(e.target.value)} required /> <br></br>
                     {/* solve adding a category*/}
-                    <select>
+                    <select value={category} onChange={(e) => setCategory(e.target.value)}>
                         <option value="">Select category</option>
                         <option value="1">Računi</option>
                         <option value="2">Posao</option>

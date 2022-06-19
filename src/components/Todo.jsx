@@ -11,6 +11,7 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
     //declared again, needed them fresh here for edit and creation of new ToDo
     const [date, setDate] = useState(new Date())
     const [todoTxt, setTodoTxt] = useState('')
+    const [category, setCategory] = useState('')
 
     //delete ToDo from list nad array
     const handleDelete = (id) => {
@@ -51,6 +52,7 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                     todoHour: date.getHours(),
                     todoMinut: minutes
                 },
+                category: category,
                 id: uuidv4()
             })
 
@@ -62,6 +64,7 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
             setTodo({
                 todoTxt: todoTxt,
                 todoDate: '',
+                category: category,
                 id: uuidv4()
             })
             let newTodos = todos.filter((todo) => todo.id !== tmpID);
@@ -94,7 +97,7 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                         </div>
 
                     }
-                    <div><p>{todoTxt ? todoTxt : todo.todoTxt}{todo.todoDate.todoDate ? <span>,   {todo.todoDate.todoDate}.{todo.todoDate.todoMonth + 1}.{todo.todoDate.todoYear} {todo.todoDate.todoHour}:{todo.todoDate.todoMinut}</span> : null} </p></div>
+                    <div><p>{todoTxt ? todoTxt : todo.todoTxt}{todo.todoDate.todoDate ? <span>,   {todo.todoDate.todoDate}.{todo.todoDate.todoMonth + 1}.{todo.todoDate.todoYear} {todo.todoDate.todoHour}:{todo.todoDate.todoMinut}</span> : null} <br></br> {todo.category} </p></div>
 
                     <div className="todoButtons">
                         <button onClick={() => handleEdit(todo.id)}> <FiEdit3 style={{ viewBox: "0, 0, 60, 55", width: "2em", height: "2em" }} /> <span className='message'>Edit</span> </button>
