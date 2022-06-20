@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { RiDeleteBin2Fill } from 'react-icons/ri'
 import { IoCheckmarkDoneSharp } from 'react-icons/io5'
+import {AiTwotoneHome} from 'react-icons/ai'
+import {MdOutlineWork} from 'react-icons/md'
+import {FaMoneyBillAlt} from 'react-icons/fa'
 import { FiEdit3 } from 'react-icons/fi'
 import DatePicker from "react-datepicker";
 import sr from 'date-fns/locale/sr'
@@ -70,6 +73,8 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
             let newTodos = todos.filter((todo) => todo.id !== tmpID);
             setTodos(newTodos)
         }
+
+
     }
 
     return (
@@ -95,18 +100,21 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                                 /> : ''}
 
                             {
-                            <select value={category} onChange={(e) => setCategory(e.target.value)} {...todo.category = category}>
-                                <option value="">Select category</option>
-                                <option value="1">Računi</option>
-                                <option value="2">Posao</option>
-                                <option value="3">Porodica</option>
-                                <option value="4">Ostalo</option>
-                            </select>
+                                <select value={todo.category} onChange={(e) => setCategory(e.target.value)}
+                                 {...todo.category=category}>
+                                    <option value="">Select category</option>
+                                    <option value="1">Računi</option>
+                                    <option value="2">Posao</option>
+                                    <option value="3">Porodica</option>
+                                    <option value="4">Ostalo</option>
+                                </select>
                             }
                         </div>
                     }
 
-                    <div><p>{todoTxt ? todoTxt : todo.todoTxt}{todo.todoDate.todoDate ? <span>,   {todo.todoDate.todoDate}.{todo.todoDate.todoMonth + 1}.{todo.todoDate.todoYear} {todo.todoDate.todoHour}:{todo.todoDate.todoMinut}</span> : null} <br></br> {todo.category} </p></div>
+                    <div>
+                        <p>{todoTxt ? todoTxt : todo.todoTxt} {todo.todoDate.todoDate ? <span>,   {todo.todoDate.todoDate}.{todo.todoDate.todoMonth + 1}.{todo.todoDate.todoYear} {todo.todoDate.todoHour}:{todo.todoDate.todoMinut}</span> : null} <br></br> { todo.category == 1 ? <FaMoneyBillAlt /> : todo.category == 2 ? <MdOutlineWork /> : todo.category == 3 ? <AiTwotoneHome /> : <span>Ostalo</span>} </p>
+                    </div> {/** ubaciti ikonicu i da se menja boja. ikoica može gdegod, boja u p ili div*/}
 
                     <div className="todoButtons">
                         <button onClick={() => handleEdit(todo.id)}> <FiEdit3 style={{ viewBox: "0, 0, 60, 55", width: "2em", height: "2em" }} /> <span className='message'>Edit</span> </button>
