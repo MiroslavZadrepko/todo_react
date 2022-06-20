@@ -94,9 +94,18 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                                     timeIntervals={5}
                                 /> : ''}
 
+                            {
+                            <select value={category} onChange={(e) => setCategory(e.target.value)} {...todo.category = category}>
+                                <option value="">Select category</option>
+                                <option value="1">Računi</option>
+                                <option value="2">Posao</option>
+                                <option value="3">Porodica</option>
+                                <option value="4">Ostalo</option>
+                            </select>
+                            }
                         </div>
-
                     }
+
                     <div><p>{todoTxt ? todoTxt : todo.todoTxt}{todo.todoDate.todoDate ? <span>,   {todo.todoDate.todoDate}.{todo.todoDate.todoMonth + 1}.{todo.todoDate.todoYear} {todo.todoDate.todoHour}:{todo.todoDate.todoMinut}</span> : null} <br></br> {todo.category} </p></div>
 
                     <div className="todoButtons">

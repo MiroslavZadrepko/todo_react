@@ -51,7 +51,6 @@ const Input = ({ todo, setTodo }) => {
         }
         setTodoTxt('')
         setDate(new Date())
-        setCategory('')
     }
 
     return (
