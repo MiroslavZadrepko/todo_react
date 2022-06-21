@@ -4,10 +4,11 @@ import sr from 'date-fns/locale/sr'
 import { useState } from 'react';
 
 function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos }) {
+    console.log(todo, id, tmpID, todo.category);
 
     const [newDate, setNewDate] = useState(new Date())
     const [newTxt, setNewTxt] = useState('')
-    const [category, setCategory] = useState('')
+    const [newCategory, setNewCategory] = useState('')
 
     const handleInput = (e) => {
         e.stopPropagation();
@@ -24,28 +25,39 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos }) {
                     todoHour: newDate.getHours(),
                     todoMinut: newDate.getMinutes()
                 },
-                category: category,
+                category: newCategory,
                 id: id
             })
 
-            let newTodos = todos.filter((todo) => todo.id !== tmpID);
-            setTodos(newTodos)
-
-            //and w/out the date and time
         } else {
+
             setTodo({
                 todoTxt: newTxt,
                 todoDate: '',
-                category: category,
+                category: newCategory,
                 id: id
             })
-            let newTodos = todos.filter((todo) => todo.id !== tmpID);
-            setTodos(newTodos)
+
         }
+        let newTodos = todos.filter((todo) => todo.id !== tmpID);
+        setTodos(newTodos)
     }
+
     return (
+
         <div>
-            <input onChange={(e) => setNewTxt(e.target.value)}  onKeyDown={(e) => {(e.key === 'Enter') && handleInput(e)}} />
+            <input onChange={(e) => setNewTxt(e.target.value)} onKeyDown={(e) => { (e.key === 'Enter') && handleInput(e) }} />
+
+            {todo.category &&
+                <select value={todo.category} onChange={(e) => setNewCategory(e.target.value)}>
+                    <option value="">Select category</option>
+                    <option value="1">Računi</option>
+                    <option value="2">Posao</option>
+                    <option value="3">Porodica</option>
+                    <option value="4">Ostalo</option>
+                    {todo.category = newCategory}
+                </select>
+            }
 
             {todo.todoDate.todoDate &&
                 <DatePicker
@@ -59,20 +71,9 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos }) {
                     dateFormat="dd/MM/yyyy HH:mm"
                     timeFormat="HH:mm"
                     timeIntervals={5}
-                />}
-            <br></br>
-
-            {
-                <select value={category} onChange={(e) => setCategory(e.target.value)}
-                >
-                    <option value="">Select category</option>
-                    <option value="1">Računi</option>
-                    <option value="2">Posao</option>
-                    <option value="3">Porodica</option>
-                    <option value="4">Ostalo</option>
-                    {todo.category = category}
-                </select>
+                />
             }
+
         </div>
     )
 }

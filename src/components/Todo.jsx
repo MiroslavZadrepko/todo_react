@@ -27,7 +27,6 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
     const [tmpID, setTmpID] = useState('');
 
     const handleEdit = (id) => {
-
         setTmpID(id)
         setEditTodo(!editTodo)
     }
@@ -37,7 +36,7 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
             {todo.id != '' ?
                 <div className={'todo_div'}>
 
-                    {editTodo && <EditTodo todo={todo} setTodo={setTodo} id={id} tmpID={tmpID} todos={todos} setTodos={setTodos} />}
+                    {editTodo && <EditTodo todo={todo} setTodo={setTodo} id={todo.id} tmpID={tmpID} todos={todos} setTodos={setTodos} />}
 
                     <div>
 
