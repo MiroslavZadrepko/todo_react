@@ -7,7 +7,6 @@ import { FaMoneyBillAlt } from 'react-icons/fa'
 import { FiEdit3 } from 'react-icons/fi'
 import DatePicker from "react-datepicker";
 import sr from 'date-fns/locale/sr'
-import { v4 as uuidv4 } from 'uuid';
 
 const Todo = ({ todo, setTodo, todos, setTodos }) => {
 
@@ -56,7 +55,7 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                     todoMinut: minutes
                 },
                 category: category,
-                id: uuidv4()
+                id: id
             })
 
             let newTodos = todos.filter((todo) => todo.id !== tmpID);
@@ -68,7 +67,7 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                 todoTxt: todoTxt,
                 todoDate: '',
                 category: category,
-                id: uuidv4()
+                id: id
             })
             let newTodos = todos.filter((todo) => todo.id !== tmpID);
             setTodos(newTodos)
@@ -82,9 +81,10 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                 <div className={'todo_div'}>
 
                     {editTodo &&
-                        <div><input onChange={(e) => setTodoTxt(e.target.value)} onKeyDown={(e) => (e.key === 'Enter') ? handleEdit(todo.id) : null} />
+                        <div>
+                            <input onChange={(e) => setTodoTxt(e.target.value)} onKeyDown={(e) => (e.key === 'Enter')} />
 
-                            {todo.todoDate.todoDate ?
+                            {todo.todoDate.todoDate &&
                                 <DatePicker
                                     className='datePicker'
                                     name='todoDate'
@@ -96,28 +96,36 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                                     dateFormat="dd/MM/yyyy HH:mm"
                                     timeFormat="HH:mm"
                                     timeIntervals={5}
-                                /> : ''}
+                                />}
                             <br></br>
 
                             {
-                                <select value={todo.category} onChange={(e) => setCategory(e.target.value)}
-                                    {...todo.category = category}>
+                                <select value={category} onChange={(e) => setCategory(e.target.value)}
+                                >
                                     <option value="">Select category</option>
                                     <option value="1">Računi</option>
                                     <option value="2">Posao</option>
                                     <option value="3">Porodica</option>
                                     <option value="4">Ostalo</option>
+                                    {todo.category = category}
                                 </select>
                             }
                         </div>
                     }
 
                     <div>
-
                         <p>{todoTxt ? todoTxt : todo.todoTxt} {todo.todoDate.todoDate ? <span>,   {todo.todoDate.todoDate}.{todo.todoDate.todoMonth + 1}.{todo.todoDate.todoYear} {todo.todoDate.todoHour}:{todo.todoDate.todoMinut}</span> : null}
                             <br></br>
-                            {todo.category == 1 ? <FaMoneyBillAlt /> : todo.category == 2 ? <MdOutlineWork /> : todo.category == 3 ? <AiTwotoneHome /> : <span>Ostalo</span>} </p>
-                    </div> {/** ubaciti ikonicu i da se menja boja. ikoica može gdegod, boja u p ili div*/}
+                            {
+                                todo.category == 1 ? <FaMoneyBillAlt />
+                                    : todo.category == 2 ? <MdOutlineWork />
+                                        : todo.category == 3 ? <AiTwotoneHome />
+                                            : todo.category == 4 ? <span>Ostalo</span>
+                                                : todo.category 
+                            }
+
+                        </p>
+                    </div> {/** ubaciti da se menja boja, u p ili div*/}
 
                     <div className="todoButtons">
                         <button onClick={() => handleEdit(todo.id)}> <FiEdit3 style={{ viewBox: "0, 0, 60, 55", width: "2em", height: "2em" }} /> <span className='message'>Edit</span> </button>
