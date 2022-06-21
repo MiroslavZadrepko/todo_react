@@ -50,7 +50,7 @@ const Input = ({ todo, setTodo }) => {
             })
         }
         setTodoTxt('')
-        setDate(new Date())
+        setDate('')
         setCategory('')
     }
 
