@@ -4,8 +4,7 @@ import sr from 'date-fns/locale/sr'
 import { useState } from 'react';
 import { FiEdit3 } from 'react-icons/fi'
 
-function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos }) {
-    console.log(todo, id, tmpID, todo.category);
+function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEditTodo }) {
 
     const [newDate, setNewDate] = useState(new Date())
     const [newTxt, setNewTxt] = useState('')
@@ -42,15 +41,16 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos }) {
         }
         let newTodos = todos.filter((todo) => todo.id !== tmpID);
         setTodos(newTodos)
+        setEditTodo(!editTodo)
     }
 
     return (
 
         <div>
             <input onChange={(e) => setNewTxt(e.target.value)} onKeyDown={(e) => (e.key === 'Enter')} />
-            {console.log(newTxt)}
+
             <br></br>
-            {todo.category != '' ?  
+            {todo.category != '' ?
                 <select value={newCategory} onChange={(e) => setNewCategory(e.target.value)}>
                     <option value="">Select category</option>
                     <option value="1">Računi</option>

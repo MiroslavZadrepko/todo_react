@@ -36,7 +36,7 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
             {todo.id != '' ?
                 <div className={'todo_div'}>
 
-                    {editTodo && <EditTodo todo={todo} setTodo={setTodo} id={todo.id} tmpID={tmpID} todos={todos} setTodos={setTodos} />}
+                    {editTodo && <EditTodo todo={todo} setTodo={setTodo} id={todo.id} tmpID={tmpID} todos={todos} setTodos={setTodos} editTodo={editTodo} setEditTodo={setEditTodo}/>}
 
                     <div>
 
@@ -53,14 +53,15 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                         } </p>
 
                     </div>
-{/**ubaciti da nestanu dugmiži kad se pozove edit */}
+                    {/**ubaciti da nestanu dugmiži kad se pozove edit */}
+                    {!editTodo &&
                     <div className="todoButtons">
                         <button onClick={(e) => handleEdit(todo.id)}> <FiEdit3 style={{ viewBox: "0, 0, 60, 55", width: "2em", height: "2em" }} /> <span className='message'>Edit</span> </button>
 
                         <button className={isActive ? 'btnGreen' : ''} onClick={() => handleCheck(todo.id)} > <IoCheckmarkDoneSharp style={{ viewBox: "0, 0, 60, 55", width: "2em", height: "2em" }} /> <span className='message'>Done</span> </button>
 
                         <button onClick={() => handleDelete(todo.id)} > <RiDeleteBin2Fill style={{ viewBox: "0, 0, 60, 55", width: "2em", height: "2em" }} /> <span className='message'>Delete</span> </button>
-                    </div>
+                    </div>}
 
                 </div> : ''
             }
