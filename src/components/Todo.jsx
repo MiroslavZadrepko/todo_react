@@ -53,7 +53,7 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                         } </p>
 
                     </div>
-
+{/**ubaciti da nestanu dugmiži kad se pozove edit */}
                     <div className="todoButtons">
                         <button onClick={(e) => handleEdit(todo.id)}> <FiEdit3 style={{ viewBox: "0, 0, 60, 55", width: "2em", height: "2em" }} /> <span className='message'>Edit</span> </button>
 

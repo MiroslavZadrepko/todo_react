@@ -2,6 +2,7 @@ import React from 'react'
 import DatePicker from "react-datepicker";
 import sr from 'date-fns/locale/sr'
 import { useState } from 'react';
+import { FiEdit3 } from 'react-icons/fi'
 
 function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos }) {
     console.log(todo, id, tmpID, todo.category);
@@ -46,17 +47,17 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos }) {
     return (
 
         <div>
-            <input onChange={(e) => setNewTxt(e.target.value)} onKeyDown={(e) => { (e.key === 'Enter') && handleInput(e) }} />
-
-            {todo.category &&
-                <select value={todo.category} onChange={(e) => setNewCategory(e.target.value)}>
+            <input onChange={(e) => setNewTxt(e.target.value)} onKeyDown={(e) => (e.key === 'Enter')} />
+            {console.log(newTxt)}
+            <br></br>
+            {todo.category != '' ?  
+                <select value={newCategory} onChange={(e) => setNewCategory(e.target.value)}>
                     <option value="">Select category</option>
                     <option value="1">Računi</option>
                     <option value="2">Posao</option>
                     <option value="3">Porodica</option>
                     <option value="4">Ostalo</option>
-                    {todo.category = newCategory}
-                </select>
+                </select> : ''
             }
 
             {todo.todoDate.todoDate &&
@@ -73,7 +74,7 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos }) {
                     timeIntervals={5}
                 />
             }
-
+            <button onClick={(e) => handleInput(e)}> <FiEdit3 style={{ viewBox: "0, 0, 60, 55", width: "2em", height: "2em" }} /> <span className='message'>Edit</span> </button>
         </div>
     )
 }
