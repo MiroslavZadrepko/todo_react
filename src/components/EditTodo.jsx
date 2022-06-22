@@ -7,8 +7,8 @@ import { FiEdit3 } from 'react-icons/fi'
 function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEditTodo }) {
 
     const [newDate, setNewDate] = useState(new Date())
-    const [newTxt, setNewTxt] = useState('')
-    const [newCategory, setNewCategory] = useState('')
+    const [newTxt, setNewTxt] = useState(todo.todoTxt)
+    const [newCategory, setNewCategory] = useState(todo.category)
 
     const handleInput = (e) => {
         e.stopPropagation();
@@ -47,7 +47,7 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEdit
     return (
 
         <div>
-            <input onChange={(e) => setNewTxt(e.target.value)} onKeyDown={(e) => (e.key === 'Enter')} />
+            <input {...todo.todoTxt} onChange={(e) => setNewTxt(e.target.value)} />
 
             <br></br>
             {todo.category != '' ?
