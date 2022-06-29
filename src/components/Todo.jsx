@@ -6,7 +6,6 @@ import { MdOutlineWork } from 'react-icons/md'
 import { FaMoneyBillAlt } from 'react-icons/fa'
 import { FiEdit3 } from 'react-icons/fi'
 import EditTodo from './EditTodo';
-import { id } from 'date-fns/locale';
 
 const Todo = ({ todo, setTodo, todos, setTodos }) => {
 
@@ -48,7 +47,7 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                             todo.category == 1 ? <FaMoneyBillAlt />
                                 : todo.category == 2 ? <MdOutlineWork />
                                     : todo.category == 3 ? <AiTwotoneHome />
-                                        : todo.category == 4 ? <span>Ostalo</span>
+                                        : todo.category == 4 ? <span></span>
                                             : todo.category
                         } </p>
 

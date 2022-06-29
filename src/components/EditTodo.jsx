@@ -9,6 +9,7 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEdit
     const [newDate, setNewDate] = useState(new Date())
     const [newTxt, setNewTxt] = useState(todo.todoTxt)
     const [newCategory, setNewCategory] = useState(todo.category)
+    console.log(todo.todoDate);
 
     const handleInput = (e) => {
         e.stopPropagation();
@@ -50,15 +51,13 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEdit
             <input {...todo.todoTxt} onChange={(e) => setNewTxt(e.target.value)} />
 
             <br></br>
-            {todo.category != '' ?
                 <select value={newCategory} onChange={(e) => setNewCategory(e.target.value)}>
                     <option value="">Select category</option>
                     <option value="1">Računi</option>
                     <option value="2">Posao</option>
                     <option value="3">Porodica</option>
                     <option value="4">Ostalo</option>
-                </select> : ''
-            }
+                </select> 
 
             {todo.todoDate.todoDate &&
                 <DatePicker
@@ -71,7 +70,7 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEdit
                     showTimeSelect
                     dateFormat="dd/MM/yyyy HH:mm"
                     timeFormat="HH:mm"
-                    timeIntervals={5}
+                    timeIntervals={10}
                 />
             }
             <button onClick={(e) => handleInput(e)}> <FiEdit3 style={{ viewBox: "0, 0, 60, 55", width: "2em", height: "2em" }} /> <span className='message'>Edit</span> </button>
