@@ -1,10 +1,13 @@
-import React from 'react'
-import DatePicker from "react-datepicker";
-import sr from 'date-fns/locale/sr'
+import React from 'react';
+import DatePicker, { registerLocale }from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import sr from "date-fns/locale/sr"
 import { useState } from 'react';
 import { FiEdit3 } from 'react-icons/fi'
 
 function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEditTodo }) {
+
+    registerLocale("sr", sr)
 
     const [newDate, setNewDate] = useState(new Date())
     const [newTxt, setNewTxt] = useState(todo.todoTxt)
@@ -17,6 +20,13 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEdit
 
         if (todo.todoDate.todoDate) {
 
+            let minut;
+
+            if (Number(newDate.getMinutes()) < 10) {
+                minut = "0" + newDate.getMinutes().toString()
+            } else { 
+                minut = newDate.getMinutes() }
+
             setTodo({
                 todoTxt: newTxt,
                 todoDate: {
@@ -24,7 +34,7 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEdit
                     todoMonth: newDate.getMonth(),
                     todoYear: newDate.getFullYear(),
                     todoHour: newDate.getHours(),
-                    todoMinut: newDate.getMinutes()
+                    todoMinut: minut
                 },
                 category: newCategory,
                 id: id
@@ -51,13 +61,13 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEdit
             <input {...todo.todoTxt} onChange={(e) => setNewTxt(e.target.value)} />
 
             <br></br>
-                <select value={newCategory} onChange={(e) => setNewCategory(e.target.value)}>
-                    <option value="">Select category</option>
-                    <option value="1">Računi</option>
-                    <option value="2">Posao</option>
-                    <option value="3">Porodica</option>
-                    <option value="4">Ostalo</option>
-                </select> 
+            <select value={newCategory} onChange={(e) => setNewCategory(e.target.value)}>
+                <option value="">Select category</option>
+                <option value="1">Računi</option>
+                <option value="2">Posao</option>
+                <option value="3">Porodica</option>
+                <option value="4">Ostalo</option>
+            </select>
 
             {todo.todoDate.todoDate &&
                 <DatePicker
@@ -65,12 +75,10 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEdit
                     name='todoDate'
                     selected={newDate}
                     onChange={(date) => setNewDate(date)}
-                    registerLocale={sr}
-                    locale="sr"
                     showTimeSelect
                     dateFormat="dd/MM/yyyy HH:mm"
                     timeFormat="HH:mm"
-                    timeIntervals={10}
+                    timeIntervals={5}
                 />
             }
             <button onClick={(e) => handleInput(e)}> <FiEdit3 style={{ viewBox: "0, 0, 60, 55", width: "2em", height: "2em" }} /> <span className='message'>Edit</span> </button>

@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { registerLocale } from 'react-datepicker';
-import sr from 'date-fns/locale/sr'
-import { srLatn } from 'date-fns/locale';
+import sr from "date-fns/locale/sr"
 import { v4 as uuidv4 } from 'uuid';
 import { MdAddTask } from 'react-icons/md'
 
-const Input = ({setTodo}) => {
+const Input = ({ setTodo }) => {
 
-    registerLocale('sr', srLatn)
+    registerLocale("sr", sr)
 
     const [date, setDate] = useState(new Date())
     const [todoTxt, setTodoTxt] = useState('')
@@ -20,6 +18,14 @@ const Input = ({setTodo}) => {
         e.preventDefault()
 
         if (enterDate) {
+
+            let minut;
+
+            if (Number(date.getMinutes()) < 10) {
+                minut = "0" + date.getMinutes().toString()
+            } else { 
+                minut = date.getMinutes() }
+
             setTodo({
                 todoTxt: todoTxt,
                 todoDate: {
@@ -27,7 +33,7 @@ const Input = ({setTodo}) => {
                     todoMonth: date.getMonth(),
                     todoYear: date.getFullYear(),
                     todoHour: date.getHours(),
-                    todoMinut: date.getMinutes()
+                    todoMinut: minut
                 },
                 category: category,
                 id: uuidv4()
@@ -40,6 +46,7 @@ const Input = ({setTodo}) => {
                 id: uuidv4()
             })
         }
+        console.log(date)
         setTodoTxt('')
         setDate(new Date())
         setCategory('')
@@ -68,13 +75,11 @@ const Input = ({setTodo}) => {
                         <DatePicker
                             name='todoDate'
                             selected={date}
-                            onChange={(date) => setDate(date)}
-                            registerLocale={sr}
-                            locale="sr"
-                            showTimeSelect
                             dateFormat="dd/MM/yyyy HH:mm"
+                            onChange={(date) => setDate(date)}
+                            showTimeSelect
                             timeFormat="HH:mm"
-                            timeIntervals={10}
+                            timeIntervals={5}
                         />}
 
                     <button type='submit'> <MdAddTask style={{ viewBox: "0, 0, 60, 55", width: "30", height: "30" }} /> <span className='message'>Add ToDo</span></button>
