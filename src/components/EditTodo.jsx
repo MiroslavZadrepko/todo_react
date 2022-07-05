@@ -1,5 +1,5 @@
 import React from 'react';
-import DatePicker, { registerLocale }from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import sr from "date-fns/locale/sr"
 import { useState } from 'react';
@@ -12,7 +12,6 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEdit
     const [newDate, setNewDate] = useState(new Date())
     const [newTxt, setNewTxt] = useState(todo.todoTxt)
     const [newCategory, setNewCategory] = useState(todo.category)
-    console.log(todo.todoDate);
 
     const handleInput = (e) => {
         e.stopPropagation();
@@ -24,8 +23,9 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEdit
 
             if (Number(newDate.getMinutes()) < 10) {
                 minut = "0" + newDate.getMinutes().toString()
-            } else { 
-                minut = newDate.getMinutes() }
+            } else {
+                minut = newDate.getMinutes()
+            }
 
             setTodo({
                 todoTxt: newTxt,
@@ -74,7 +74,7 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEdit
                     className='datePicker'
                     name='todoDate'
                     selected={newDate}
-                    onChange={(date) => setNewDate(date)}
+                    onChange={(newDate) => setNewDate(newDate)}
                     showTimeSelect
                     dateFormat="dd/MM/yyyy HH:mm"
                     timeFormat="HH:mm"
