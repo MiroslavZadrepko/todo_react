@@ -9,7 +9,7 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEdit
 
     registerLocale("sr", sr)
 
-    const [newDate, setNewDate] = useState(new Date())
+    const [newDate, setNewDate] = useState(todo.date)
     const [newTxt, setNewTxt] = useState(todo.todoTxt)
     const [newCategory, setNewCategory] = useState(todo.category)
 
@@ -36,6 +36,7 @@ function EditTodo({ todo, setTodo, id, tmpID, todos, setTodos, editTodo, setEdit
                     todoHour: newDate.getHours(),
                     todoMinut: minut
                 },
+                date: newDate,
                 category: newCategory,
                 id: id
             })

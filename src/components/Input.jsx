@@ -35,6 +35,7 @@ const Input = ({ setTodo }) => {
                     todoHour: date.getHours(),
                     todoMinut: minut
                 },
+                date: date,
                 category: category,
                 id: uuidv4()
             })
