@@ -47,7 +47,6 @@ const Input = ({ setTodo }) => {
                 id: uuidv4()
             })
         }
-        console.log(date)
         setTodoTxt('')
         setDate(new Date())
         setCategory('')
@@ -83,7 +82,8 @@ const Input = ({ setTodo }) => {
                             timeIntervals={5}
                         />}
 
-                    <button type='submit'> <MdAddTask style={{ viewBox: "0, 0, 60, 55", width: "30", height: "30" }} /> <span className='message'>Add ToDo</span></button>
+                    <button type='submit'> <MdAddTask style={{ viewBox: "0, 0, 60, 55", width: "30", height: "30" }} /> 
+                    <span className='message'>Add ToDo</span></button>
                 </fieldset>
             </form>
         </>

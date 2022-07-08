@@ -44,9 +44,9 @@ const Todo = ({ todo, setTodo, todos, setTodos }) => {
                         <br></br>
 
                         <p> {
-                            todo.category == 1 ? <FaMoneyBillAlt />
-                                : todo.category == 2 ? <MdOutlineWork />
-                                    : todo.category == 3 ? <AiTwotoneHome />
+                            todo.category == 1 ? <FaMoneyBillAlt style={{ viewBox: "0, 0, 60, 55", width: "2em", height: "2em" }}/>
+                                : todo.category == 2 ? <MdOutlineWork style={{ viewBox: "0, 0, 60, 55", width: "2em", height: "2em" }}/>
+                                    : todo.category == 3 ? <AiTwotoneHome style={{ viewBox: "0, 0, 60, 55", width: "2em", height: "2em" }}/>
                                         : todo.category == 4 ? <span></span>
                                             : todo.category
                         } </p>
